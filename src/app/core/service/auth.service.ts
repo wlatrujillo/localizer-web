@@ -19,13 +19,14 @@ export class AuthService {
     .pipe(catchError(this.errorHandler));
   }
 
-  login(email: string, password: string): Observable<string> {
-    return this.http.post<string>(`${this.AUTH_URL}/login`, { email, password })
-    .pipe(map(token => {
+  login(email: string, password: string): Observable<void> {
+    return this.http.post<void>(`${this.AUTH_URL}/login`, { email, password }, {observe: 'response'})
+    .pipe(
+      map(response => {
+      const token = response.headers.get('x-auth-token');
       if (token) {
         localStorage.setItem('auth_token', token);
       }
-      return token;
     }))
     .pipe(catchError(this.errorHandler));
   }
