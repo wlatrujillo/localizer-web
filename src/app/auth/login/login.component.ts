@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../core/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private sidebarVisible: boolean;
   private nativeElement: Node;
 
-  constructor(private element: ElementRef, private router: Router) {
+  constructor(private element: ElementRef, private router: Router, private authService: AuthService) {
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
   }
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onClickLogin(){
-    this.router.navigate(['/admin']);
+    this.authService.login('wladimir.trujillo.ec@gmail.com','Passw0rd2024')
+    .subscribe(() => this.router.navigate(['/admin']));
   }
 }
