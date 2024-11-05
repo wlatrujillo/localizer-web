@@ -5,7 +5,7 @@ import {AdminLayoutComponent} from './layouts/admin/admin-layout.component';
 export const routes: Routes = [
     {
       path: '',
-      redirectTo: 'auth',
+      redirectTo: 'auth/login',
       pathMatch: 'full'
     },
     {
@@ -13,8 +13,8 @@ export const routes: Routes = [
       component: AuthLayoutComponent,
       children: [
         {
-          path: 'login',
-          loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent)
+          path: '',
+          loadChildren: () => import('./auth/auth.routes').then(m => m.AUTH_ROUTES)
         }
       ]
     },
