@@ -9,17 +9,24 @@ export const routes: Routes = [
       pathMatch: 'full'
     },
     {
-      path: 'auth',
+      path: '',
       component: AuthLayoutComponent,
       children: [
         {
-          path: '',
+          path: 'auth',
           loadChildren: () => import('./auth/auth.routes').then(m => m.AUTH_ROUTES)
         }
       ]
     },
     {
-      path: 'admin',
-      component: AdminLayoutComponent
+      path: '',
+      component: AdminLayoutComponent,
+      children: [
+        {
+          path: 'admin',
+          loadChildren: () => import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
+        }
+
+      ]
     }
 ];

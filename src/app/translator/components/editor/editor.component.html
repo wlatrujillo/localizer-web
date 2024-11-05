@@ -1,0 +1,132 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <mat-form-field class="full-width">
+                <mat-label>Culturas</mat-label>
+                <mat-select [compareWith]="compareCulture" multiple [formControl]="selectedLocales">
+                    <mat-select-trigger fxLayout="row wrap">
+                        {{selectedLocales.value?.[0]?.id || ''}}
+                        <span *ngIf="(selectedLocales.value?.length||0)>1">
+                            (+{{(selectedLocales.value?.length || 0) - 1}}
+                            {{selectedLocales.value?.length === 2 ?
+                            'lenguaje' : 'lenguajes'}})
+                        </span>
+                    </mat-select-trigger>
+                    <!--mat-select-trigger fxLayout="row wrap">
+                        <span *ngFor="let locale of selectedLocales.value; let last = last">
+                            {{locale.id}} {{last ? '' : ', '}}
+                        </span>
+                    </mat-select-trigger-->
+                    <mat-option *ngFor="let locale of locales" [value]="locale">
+                        <ng-container [ngTemplateOutlet]="customTemplate" [ngTemplateOutletContext]="{locale:locale}">
+                        </ng-container>
+                    </mat-option>
+                    <ng-template #customTemplate let-locale="locale">
+                        {{locale.id}} {{locale.name}}
+                    </ng-template>
+                </mat-select>
+            </mat-form-field>
+
+
+
+        </div>
+
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <mat-form-field class="full-width">
+                <mat-label>Buscar</mat-label>
+                <mat-icon matPrefix>search</mat-icon>
+                <input #searchInput type="text" matInput placeholder="">
+                <mat-icon (click)="clearSearch()" matSuffix *ngIf="searchInput.value">close</mat-icon>
+            </mat-form-field>
+
+        </div>
+
+        <div class="col-md-6">
+            <button mat-raised-button color="primary" (click)="openDialogAddResource()">Agregar Recurso</button>
+        </div>
+
+    </div>
+
+
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-12">
+            <strong>Items</strong>
+            {{resources.length}}
+        </div>
+    </div>
+    <div class="row row-key" *ngFor="let resource of resources">
+        <div class="col-md-3">
+            <div class="item-key">
+                <div class="item-key-value">
+                    <span>{{resource.id}}</span>
+                </div>
+                <div class="item-key-actions">
+                    <button (click)="onDeleteResource(resource)" class="icon-button-small" mat-mini-fab
+                        matTooltip="Borrar recurso" aria-label="Delete Resource">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" style="padding-right: 0;">
+            <ng-container *ngFor="let translation of resource.translations">
+                <div class="row-trans" *ngIf="isLocaleSelected(translation.locale)">
+
+                    <div class="key-translation-lang-name">
+                        <strong> {{translation.locale}}</strong>
+                    </div>
+                    <div class="key-translation-editor-container">
+                        <ng-template [ngIf]="selectedTranslation!=translation" [ngIfElse]="translationEditor">
+                            <div (click)="selectedTranslation=translation" class="key-editor-wrapper">
+                                <div>{{translation.value}}</div>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #translationEditor>
+                            <div class="key-translation-editor">
+                                <div class="editor-wrapper">
+                                    <input #translationInput type="text" class="form-control" matInput
+                                        placeholder="Traducción" value="{{translation.value}}">
+                                    <div class="editor-panel bottom-panel">
+                                        <button mat-raised-button color="primary"
+                                            (click)="onSubmitTranslation(resource, translation, translationInput.value)">Guardar</button>
+                                        <button mat-raised-button (click)="selectedTranslation=null">Cancelar</button>
+                                        <div class="editor-function-toggle-container">
+                                            <div class="character-counter">
+                                                <span>{{translationInput.value.length}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="key-translation-actions-container">
+
+                        <div class="key-translation-actions">
+                            <!--button class="icon-button-small" mat-mini-fab
+                                aria-label="Example icon button with a home icon">
+                                <mat-icon>mode_edit</mat-icon>
+                            </button-->
+                        </div>
+
+                    </div>
+
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+
+
+
+
+</div>

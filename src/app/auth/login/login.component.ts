@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ CommonModule, RouterModule ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private sidebarVisible: boolean;
   private nativeElement: Node;
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private router: Router) {
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
   }
@@ -51,5 +52,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove('login-page');
     body.classList.remove('off-canvas-sidebar');
+  }
+
+  onClickLogin(){
+    this.router.navigate(['/admin']);
   }
 }

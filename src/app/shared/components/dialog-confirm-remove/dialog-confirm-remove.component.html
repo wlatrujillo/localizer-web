@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>
+    Borrar {{data.title}}
+</h1>
+<div mat-dialog-content>
+    <p>{{data.message}}</p>
+</div>
+<div mat-dialog-actions>
+    <!--div class="confirm-dialog">
+        <span>Para confirma escriba {{textValidation}}</span>
+        <input [formControl]="text" class="form-control" [placeholder]="textValidation">
+    </div-->
+    <button mat-raised-button color="warn"  (click)="onDelete()">Borrar</button>
+    <button mat-raised-button [mat-dialog-close]="false">Cancelar</button>
+</div>

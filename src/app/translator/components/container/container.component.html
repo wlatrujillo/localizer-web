@@ -1,0 +1,39 @@
+<mat-tab-group class="top-tab-group" contentPreserve="true">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">local_library</mat-icon>
+            Editor
+        </ng-template>
+
+        <ng-template matTabContent>
+            <app-editor></app-editor>
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">settings</mat-icon>
+            Configuración
+        </ng-template>
+        <ng-template matTabContent>
+            <app-settings></app-settings>
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">cloud_download</mat-icon>
+            Generar
+        </ng-template>
+        <ng-template matTabContent>
+            <app-generator></app-generator>
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">cloud_upload</mat-icon>
+            Cargar
+        </ng-template>
+        <ng-template matTabContent>
+            <app-uploader></app-uploader>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

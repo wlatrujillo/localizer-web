@@ -1,0 +1,57 @@
+<form (ngSubmit)="onSubmitProcessFile()">
+    <h1 mat-dialog-title>
+        Procesar Archivo
+    </h1>
+    <div mat-dialog-content>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="d-flex flex-row">
+                        <div style="margin-right: 5px;" *ngFor="let column of columns; let index = index">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Columna {{index}}</mat-label>
+                                <mat-select [(value)]="rowKeys[index]">
+                                    <mat-option *ngFor="let item of rowOptions" [value]="item.code">
+                                        <span>
+                                            {{item.description}}
+                                        </span>
+                                    </mat-option>
+                                </mat-select>
+                                <button *ngIf="rowKeys[index]" matSuffix mat-icon-button type="button"
+                                    aria-label="Clear" (click)="rowKeys[index]=null; $event.stopPropagation()">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Columna {{index}}</mat-label>
+                                <textarea matInput placeholder="Texto" [value]="column"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Cultura</mat-label>
+                        <mat-select  [compareWith]="compareLocales" [formControl]="selectedLocale">
+                            <mat-option *ngFor="let locale of locales" [value]="locale">
+                                {{locale.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="selectedLocale.hasError('required')">
+                            Este campo es<strong> Requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit">Aceptar</button>
+        <button mat-raised-button [mat-dialog-close]="false">Cancelar</button>
+    </div>
+</form>
