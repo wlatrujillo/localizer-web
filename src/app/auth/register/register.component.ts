@@ -2,11 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, AbstractControl, FormBuilder, FormGroup, PatternValidator, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatCheckboxModule ],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatCheckboxModule ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -39,6 +43,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
             validator: RegisterComponent.passwordMatchValidator
           });
   }
+
+
+  get fval() { return this.registerForm.controls; }
 
   ngOnInit() {
     const body = document.getElementsByTagName('body')[0];

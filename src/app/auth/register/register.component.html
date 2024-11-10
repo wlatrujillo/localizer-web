@@ -18,6 +18,15 @@
 
                     <div class="form-group has-default">
 
+
+                      <mat-form-field>
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <input type="text" matInput placeholder="Nombre" formControlName="firstName">
+                        <mat-error *ngIf="fval['firstName']['errors']&&fval['firstName']['errors']['required']">
+                          Este campo es <strong>requerido</strong>
+                        </mat-error>
+                      </mat-form-field>
+
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text">
