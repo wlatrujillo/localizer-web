@@ -147,7 +147,7 @@
       margin-bottom: 20px;
     }
     .card-body {
-      padding: 0px 30px 0px 10px;
+      padding: 0px 20px 0px 20px;
 
       .input-group {
         .input-group-text {
@@ -238,11 +238,18 @@
 .register-page{
   height: 100vh;
     .card-signup{
+        @extend .animation-transition-general;
+
         border-radius: $border-radius-base * 2;
         @include shadow-16dp();
         margin-bottom: 100px;
         padding: 40px 0px;
         margin-top: 15vh;
+
+        &.card-hidden{
+          opacity: 0;
+          @include transform-translate-y(-60px);
+        }
 
 
         .info{

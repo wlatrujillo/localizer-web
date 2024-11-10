@@ -7,7 +7,7 @@
 
           <form class="form" method="" action="" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
             <div class="card card-login card-hidden">
-
+              <h2 class="card-title text-center">Ingresar</h2>
               <div class="card-body" >
 
 
@@ -30,7 +30,7 @@
               </div>
 
               <div class="card-footer justify-content-center">
-               <button class="btn btn-rose btn-link btn-lg" [disabled]="loading">
+               <button type="submit" class="btn btn-rose btn-link btn-lg" [disabled]="loading">
                   <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                   Continuar
                </button>
