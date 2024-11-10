@@ -61,10 +61,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   static patternValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
       if (!control.value) {
         // if control is empty return no error
-        return '';
+        return null;
       }
 
       // test the value of the control against the regexp supplied
@@ -76,13 +76,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   static passwordMatchValidator(control: AbstractControl) {
-    const password: string = control.get('password').value; // get password from our password form control
-    const confirmPassword: string = control.get('confirmPassword').value; // get password from our confirmPassword form control
+    const password: string = control.get('password')?.value; // get password from our password form control
+    const confirmPassword: string = control.get('confirmPassword')?.value; // get password from our confirmPassword form control
     // compare is the password math
     if (password !== confirmPassword) {
       // if they don't match, set an error in our confirmPassword form control
-      control.get('confirmPassword').setErrors({ NoPasswordMatch: true });
+      control.get('confirmPassword')?.setErrors({ NoPasswordMatch: true });
     }
+  }
+
+  onSubmit() {
+    console.log(this.registerForm.value);
   }
 
 }
