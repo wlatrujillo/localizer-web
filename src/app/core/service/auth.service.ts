@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(`${this.AUTH_URL}/register`, user)
+    return this.http.post<User>(`${this.AUTH_URL}/signup`, user)
     .pipe(catchError(this.errorHandler));
   }
 

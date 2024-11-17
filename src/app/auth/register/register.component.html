@@ -10,74 +10,75 @@
               <div class="">
 
                 <div class="">
+
                   <div class="social text-center">
 
                   </div>
 
-                  <form class="form" method="" action="">
-
-                    <div class="form-group has-default">
 
 
-                      <mat-form-field>
-                        <mat-icon matSuffix>account_circle</mat-icon>
-                        <input type="text" matInput placeholder="Nombre" formControlName="firstName">
-                        <mat-error *ngIf="fval['firstName']['errors']&&fval['firstName']['errors']['required']">
-                          Este campo es <strong>requerido</strong>
-                        </mat-error>
-                      </mat-form-field>
+                  <mat-form-field>
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <input type="text" matInput placeholder="Nombre" formControlName="firstName">
+                    <mat-error *ngIf="fval['firstName']['errors']&&fval['firstName']['errors']['required']">
+                      Este campo es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
 
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">attribution</i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=" Nombre...">
-                      </div>
+                  <mat-form-field>
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <input type="text" matInput placeholder="Apellido" formControlName="lastName">
+                    <mat-error *ngIf="fval['lastName']['errors']&&fval['lastName']['errors']['required']">
+                      Este campo es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
 
-                    </div>
+                  <mat-form-field>
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <input type="email" matInput placeholder="Correo electrónico" formControlName="email">
+                    <mat-error *ngIf="fval['email']['errors']&&fval['email']['errors']['required']">
+                      Email es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
 
-                    <div class="form-group has-default">
+                  <mat-form-field class="has-default">
+                    <mat-icon matSuffix>lock_outline</mat-icon>
+                    <input type="password" matInput placeholder="Contraseña" formControlName="password">
+                    <mat-error *ngIf="handleError('password','required')">
+                      Este campo es <strong>requiredo</strong>
+                    </mat-error>
+                    <mat-error *ngIf="handleError('password','hasNumber')">
+                      La contraseña debe tener números
+                    </mat-error>
+                    <mat-error *ngIf="handleError('password','hasCapitalCase')">
+                      La contraseña de tener mayusculas
+                    </mat-error>
+                    <mat-error *ngIf="handleError('password','hasSmallCase')">
+                      La contraseña debe tener minusculas
+                    </mat-error>
+                    <mat-error *ngIf="handleError('password','minlength')">
+                      La contraseña debe tener al menos 8 caracteres
+                    </mat-error>
+                  </mat-form-field>
 
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">assignment</i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder=" Apellido...">
-                      </div>
+                  <mat-form-field class="has-default" style="margin-top: 5px;">
+                    <mat-icon matSuffix>lock_outline</mat-icon>
+                    <input type="password" (paste)="(false)" matInput placeholder="Confirmar Contraseña"
+                                                    formControlName="confirmPassword">
+                    <mat-error *ngIf="handleError('confirmPassword','required')">
+                      Este campo es <strong>requiredo</strong>
+                    </mat-error>
+                    <mat-error *ngIf="handleError('confirmPassword','NoPasswordMatch')">
+                      La contraseña no es <strong>igual</strong>
+                    </mat-error>
+                  </mat-form-field>
 
-                    </div>
-
-
-                    <div class="form-group has-default">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">mail</i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Email...">
-                      </div>
-                    </div>
-
-                    <div class="form-group has-default">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">lock_outline</i>
-                          </span>
-                        </div>
-                        <input type="password" placeholder="Password..." class="form-control">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <a href="#pablo" class="btn btn-primary btn-round mt-4">Registrarse</a>
-                    </div>
-                  </form>
+                  <div class="text-center">
+                     <button type="submit" class="btn btn-primary btn-round mt-4" [disabled]="loading">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Registrarse
+                     </button>
+                  </div>
 
                 </div>
 
@@ -96,7 +97,7 @@
         </nav>
         <div class="copyright pull-right">
           &copy;
-        {{test | date: 'yyyy'}}, made with <i class="material-icons">favorite</i> by
+          {{test | date: 'yyyy'}}, made with <i class="material-icons">favorite</i> by
           <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
         </div>
       </div>
