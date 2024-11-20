@@ -1,1 +1,30 @@
-<p>admin-layout works!</p>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="opened">
+
+
+    <div class="sidenav-options">
+      <ul>
+        <li>
+          <a routerLink="/admin/projects" routerLinkActive="active">
+          <mat-icon>dashboard</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidenav-tools">
+      <ul>
+        <li>
+          <a href="" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

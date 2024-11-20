@@ -1,0 +1,22 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content {
+  padding: 15px 0px 15px 0px;
+}
+
+mat-sidenav {
+  background: lightcoral;
+  width: 50px;
+}
+
+mat-sidenav ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+mat-sidenav .sidenav-tools {
+  position: fixed;
+  bottom: 5px;
+}
