@@ -11,6 +11,8 @@ import { NotificationService } from '@shared/service/notification.service';
 
 @Component({
   selector: 'app-settings',
+  standalone: true,
+  imports: [],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })

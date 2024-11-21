@@ -6,6 +6,8 @@ import { Locale } from 'src/app/core/model/locale';
 
 @Component({
   selector: 'app-dialog-add-culture',
+  standalone: true,
+  imports: [],
   templateUrl: './dialog-add-culture.component.html',
   styleUrls: ['./dialog-add-culture.component.scss']
 })

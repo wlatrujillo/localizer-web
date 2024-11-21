@@ -6,6 +6,8 @@ import { NotificationService } from '@shared/service/notification.service';
 
 @Component({
   selector: 'app-dialog-process-file',
+  standalone: true,
+  imports: [],
   templateUrl: './dialog-process-file.component.html',
   styleUrls: ['./dialog-process-file.component.scss']
 })

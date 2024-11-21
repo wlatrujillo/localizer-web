@@ -13,6 +13,8 @@ import { Project } from '@core/model/project';
 
 @Component({
   selector: 'app-editor',
+  standalone: true,
+  imports: [],
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
@@ -107,7 +109,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       title: "Recurso",
-      message: `¿Está seguro que desea eliminar 
+      message: `¿Está seguro que desea eliminar
       el recurso ${resource.id} con todas sus traducciones?`
     };
 

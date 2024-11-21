@@ -9,6 +9,8 @@ import { Locale } from 'src/app/core/model/locale';
 
 @Component({
   selector: 'app-generator',
+  standalone: true,
+  imports: [],
   templateUrl: './generator.component.html',
   styleUrls: ['./generator.component.scss']
 })

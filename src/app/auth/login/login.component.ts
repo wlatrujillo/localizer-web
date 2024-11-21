@@ -90,6 +90,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     this.authService.login(this.fval['email']['value'], this.fval['password']['value'])
-    .subscribe(() => { this.router.navigate(['/admin']); this.loading = false;}, error => {console.error(error); this.loading = false;});
+    .subscribe(() => { this.router.navigate(['/admin/projects']); this.loading = false;}, error => {console.error(error); this.loading = false;});
   }
 }

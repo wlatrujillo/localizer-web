@@ -8,6 +8,8 @@ import { NotificationService } from '@shared/service/notification.service';
 
 @Component({
   selector: 'app-dialog-add-resource',
+  standalone: true,
+  imports: [],
   templateUrl: './dialog-add-resource.component.html',
   styleUrls: ['./dialog-add-resource.component.scss']
 })

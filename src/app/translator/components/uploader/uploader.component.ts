@@ -9,6 +9,8 @@ import { NotificationService } from '@shared/service/notification.service';
 
 @Component({
   selector: 'app-uploader',
+  standalone: true,
+  imports: [],
   templateUrl: './uploader.component.html',
   styleUrls: ['./uploader.component.scss']
 })
