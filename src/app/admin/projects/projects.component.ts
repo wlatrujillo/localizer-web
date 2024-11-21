@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { AdminService } from '../../core/service/admin.service';
 
 @Component({
   selector: 'app-projects',
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
 
+  constructor(private adminService: AdminService) { }
+
+  ngOnInit() {
+    this.adminService.getAllProjects().subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

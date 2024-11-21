@@ -98,7 +98,7 @@ export class AuthLayoutComponent implements OnInit{
     }
 
     setTimeout(function() {
-      $toggle.classList.remove('toggled');
+      $toggle?.classList.remove('toggled');
     }, 400);
 
     this.mobile_menu_visible = 0;
