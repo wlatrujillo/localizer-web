@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -12,9 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+   console.log('ContainerComponent initialized.', this.route.snapshot.data);
   }
 
 

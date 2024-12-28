@@ -15,8 +15,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(user: User): Observable<User> {
+
     return this.http.post<User>(`${this.AUTH_URL}/signup`, user)
     .pipe(catchError(this.errorHandler));
+
   }
 
   login(email: string, password: string): Observable<void> {
@@ -39,4 +41,5 @@ export class AuthService {
     console.error(error);
     return throwError(() => new Error(error.message || 'Server error. Please try again later.'));
   }
+
 }

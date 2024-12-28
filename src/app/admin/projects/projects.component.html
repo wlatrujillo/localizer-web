@@ -7,7 +7,8 @@
 
       <mat-grid-tile>
 
-        <mat-card class="example-card" appearance="outlined">
+        <mat-card (click)='onClickProject(project)' class="example-card" appearance="outlined">
+
           <mat-card-header>
             <mat-card-title>{{project.name}}</mat-card-title>
             <mat-card-subtitle>Proyecto</mat-card-subtitle>
@@ -19,9 +20,10 @@
           </mat-card-content>
 
           <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
+            <button (click)='onClickProject(project)' mat-button>Seleccionar</button>
+            <button mat-button>Ver</button>
           </mat-card-actions>
+
         </mat-card>
 
       </mat-grid-tile>

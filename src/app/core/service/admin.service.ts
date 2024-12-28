@@ -16,12 +16,14 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
+
     return this.http.get<Project[]>(`${this.API_URL}`)
     .pipe(catchError(this.errorHandler));
+
   }
 
   getProjectById(id:string): Observable<Project> {
-    return this.http.get<Project>(`${this.API_URL}`)
+    return this.http.get<Project>(`${this.API_URL}/${id}`)
     .pipe(catchError(this.errorHandler));
   }
 

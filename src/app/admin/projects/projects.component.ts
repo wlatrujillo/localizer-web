@@ -36,7 +36,7 @@ export class ProjectsComponent implements OnInit {
 
   onClickProject(project: Project) {
     console.log('Project clicked: ' + project._id);
-    this.router.navigate(['/admin/translator', project._id]);
+    this.router.navigate(['admin','projects', project._id, 'translator' ]);
 
   }
 }
