@@ -3,7 +3,7 @@
     <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+        <div class="col-lg-6 col-md-8 col-sm-8 ml-auto mr-auto">
 
           <form class="form" method="" action="" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
             <div class="card card-login card-hidden">
@@ -12,15 +12,16 @@
 
 
                 <mat-form-field>
-                  <mat-icon matSuffix>account_circle</mat-icon>
+                  <mat-icon matPrefix>account_circle</mat-icon>
                   <input type="email" matInput placeholder="Email" formControlName="email">
                   <mat-error *ngIf="fval['email']['errors']&&fval['email']['errors']['required']">
                     Email es <strong>requerido</strong>
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <mat-icon matSuffix>lock_outline</mat-icon>
-                  <input type="password" matInput placeholder="Contraseña" formControlName="password">
+                  <mat-icon matPrefix>lock_outline</mat-icon>
+                  <input type="{{showPassword?'text':'password'}}" matInput placeholder="Contraseña" formControlName="password">
+                  <mat-icon (mousedown)='showPassword=true' (mouseup)='showPassword=false' matSuffix>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
                   <mat-error *ngIf="fval['password']['errors']&&fval['password']['errors']['required']">
                     Contraseña es <strong>requerida</strong>
                   </mat-error>

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   submitted: boolean = false;
   loginForm: FormGroup;
+  showPassword: boolean = false;
 
   constructor(private element: ElementRef,
               private router: Router,
