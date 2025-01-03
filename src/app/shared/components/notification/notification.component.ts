@@ -5,6 +5,7 @@ import { takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-notification',
+  standalone: true,
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })

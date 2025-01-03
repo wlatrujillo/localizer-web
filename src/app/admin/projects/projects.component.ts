@@ -3,8 +3,8 @@ import { RouterModule, Router, NavigationEnd, NavigationStart } from '@angular/r
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { AdminService } from '../../core/service/admin.service';
-import { Project } from '../../core/model/project';
+import { AdminService } from '@core/service/admin.service';
+import { Project } from '@core/model/project';
 
 @Component({
   selector: 'app-projects',

@@ -1,6 +1,7 @@
 import { Translation } from "./translation";
 
 export interface Resource {
-    id: string;
+    projectId: string;
+    code: string;
     translations: Translation[]
 }

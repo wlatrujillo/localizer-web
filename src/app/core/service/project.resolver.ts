@@ -1,8 +1,8 @@
 import { ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
-import { Project } from '../model/project';
-import { AdminService } from '../service/admin.service';
+import { Project } from '@core/model/project';
+import { ProjectService } from '@core/service/project.service';
 
 export const ProjectResolver: ResolveFn<Project> = (route, state) => {
-  return inject(AdminService).getProjectById(route.params['_projectId']);
+  return inject(ProjectService).getById(route.params['_projectId']);
 };
