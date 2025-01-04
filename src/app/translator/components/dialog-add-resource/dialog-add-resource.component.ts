@@ -7,11 +7,12 @@ import { NotificationService } from '@shared/service/notification.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dialog-add-resource',
   standalone: true,
-  imports: [ MatDialogModule, MatInputModule, FormsModule, ReactiveFormsModule ],
+  imports: [ MatDialogModule, MatInputModule, FormsModule, ReactiveFormsModule, MatButtonModule ],
   templateUrl: './dialog-add-resource.component.html',
   styleUrls: ['./dialog-add-resource.component.scss']
 })
@@ -38,15 +39,12 @@ export class DialogAddResourceComponent implements OnInit {
     try {
       let resource: Resource = {} as Resource;
       resource.code = this.form.value.id;
-      resource.translations = [];
-      this.data.locales.forEach((locale: Locale) => {
-        resource.translations.push({
-          locale: locale.code,
-          value: this.form.value.value
-        });
+      resource.value = this.form.value.value;
+
+      this.resourceService.create(this.data.projectId, resource).subscribe( response => {
+        console.log(response);
+        this.dialogRef.close({ success: true, resource: response });
       });
-      this.resourceService.create('projectId', resource);
-      this.dialogRef.close({ success: true, resource });
     } catch (e) {
       console.error(e);
       this.notification.error(e as string);

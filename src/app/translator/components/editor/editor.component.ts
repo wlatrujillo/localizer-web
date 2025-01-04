@@ -15,12 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+
 import { FormsModule, FormBuilder, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editor',
   standalone: true,
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule, MatButtonModule],
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
@@ -103,7 +105,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = { locales: this.locales, baseLocale: this.baseLocale }
+    dialogConfig.data = { locales: this.locales,
+                          baseLocale: this.baseLocale,
+                          projectId: this.project._id
+                        }
 
     const dialogRef = this.dialog
       .open(DialogAddResourceComponent, dialogConfig);
@@ -112,7 +117,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
       .subscribe(result => {
         console.log(result)
         if (result.success) {
-         // this.resources.push(result.resource);
+         this.resources.push(result.resource);
         }
       });
   }
@@ -136,7 +141,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
       .subscribe(acceptedDelete => {
         if (acceptedDelete) {
           console.log("Borrando recurso...");
-          this.resourceService.deleteById(this.project['_id'], resource.code);
+          const index = this.resources.findIndex(e=>e.code==resource.code);
+          this.resourceService
+              .deleteById(this.project['_id'], resource.code)
+              .subscribe( response => {this.resources.splice(index,1)}, error => {console.error(error)});
         }
       });
 
@@ -147,7 +155,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     translation: Translation,
     inputValue: string): void {
     translation.value = inputValue;
-    this.translationService.update(this.project['_id'], resource.code, translation);
+    this.translationService.update(this.project['_id'], resource.code, translation).subscribe();
     this.selectedTranslation = null;
   }
 
