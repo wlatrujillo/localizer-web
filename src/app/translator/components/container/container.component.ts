@@ -3,12 +3,13 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { EditorComponent } from '../editor/editor.component';
+import { SettingsComponent } from '../settings/settings.component';
 import { Project } from '@core/model/project';
 
 @Component({
   selector: 'app-container',
   standalone: true,
-  imports: [ RouterModule, MatTabsModule, MatIconModule, EditorComponent],
+  imports: [ RouterModule, MatTabsModule, MatIconModule, EditorComponent, SettingsComponent],
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss']
 })

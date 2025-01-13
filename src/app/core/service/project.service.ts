@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Project } from '../model/project';
+import { Locale } from '@core/model/locale';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -25,8 +26,28 @@ export class ProjectService {
     .pipe(catchError(this.errorHandler));
   }
 
+  updateById(id:string, project:Project): Observable<void> {
+    return this.http.put<void>(`${this.API_URL}/${id}`, project)
+    .pipe(catchError(this.errorHandler));
+  }
+
   deleteById(id:string): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  removeLocaleFromAllResources(id:string, locale:Locale): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  addLocaleToAllResources(id:string, locale:Locale): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  getAllLocales(id:string): Observable<Locale[]> {
+    return this.http.delete<Locale[]>(`${this.API_URL}/${id}`)
     .pipe(catchError(this.errorHandler));
   }
 
