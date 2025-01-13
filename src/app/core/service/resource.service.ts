@@ -26,9 +26,9 @@ export class ResourceService {
 
   }
 
-  getFilterByText(projectId:string): Observable<Resource[]> {
+  getFilterByText(projectId:string, filter:string=""): Observable<Resource[]> {
 
-    return this.http.get<Resource[]>(`${this.API_BASE_URL}/${projectId}/resources`)
+    return this.http.get<Resource[]>(`${this.API_BASE_URL}/${projectId}/resources?q=${filter}`)
     .pipe(catchError(this.errorHandler));
 
   }

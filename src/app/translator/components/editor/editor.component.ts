@@ -71,7 +71,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe(() => {
-          this.resourceService.getFilterByText(this.matInput.nativeElement.value).subscribe((resources: Resource[]) => {
+          this.resourceService.getFilterByText(this.project['_id'], this.matInput.nativeElement.value).subscribe((resources: Resource[]) => {
             this.resources = resources;
           });
       });
